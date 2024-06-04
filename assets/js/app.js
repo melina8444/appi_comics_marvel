@@ -11,14 +11,17 @@ const url =`http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicK
 function mostrarPelis(pelis) {
     pelis.forEach(personaje => {
         const nuevoPersonaje = document.createElement('div');
-        nuevoPersonaje.className = 'card'
+        nuevoPersonaje.className = 'card';
+
         const nuevaImagen = document.createElement('img');
         nuevaImagen.className = 'card-body';
+        const imageUrl = personaje.thumbnail.path + '.' + personaje.thumbnail.extension;
+        nuevaImagen.src = imageUrl;
+
         const descripcion = document.createElement('p');
         descripcion.className ='card-footer'
-        nuevaImagen.src = personaje.url;
-        nuevoPersonaje.textContent = personaje.name;
         descripcion.textContent = personaje.title;
+        descripcion.style.marginTop = '10px'; // Margen superior para separar la imagen del texto
 
         nuevoPersonaje.appendChild(nuevaImagen);
         nuevoPersonaje.appendChild(descripcion);
@@ -26,15 +29,15 @@ function mostrarPelis(pelis) {
         peliculasListas.appendChild(nuevoPersonaje);
         
         nuevoPersonaje.addEventListener('click', function(){
-            alert(personaje.name)
+            alert(personaje.title)
         })
     });
 }
 
 function obtenerPeliculas() {
-    fetch('http://gateway.marvel.com/v1/public/comics?ts=1&apikey=ef12e30fbb2d51edb822c1a316b7f30b&hash=f26390123ec9c2dd39fd71a48e2c1bb7')
+    fetch(url)
         .then(response => response.json())
-        .then(data => console.log(data.results))
+        .then(data => mostrarPelis(data.data.results))
         .catch(error => console.error('Error:', error));
 }
 

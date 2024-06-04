@@ -80,20 +80,31 @@
 }
 
 .card {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 2px 8px 8px rgba(13, 217, 227, 0.1);
-    width: 300px;
-    margin: 20px;
-    padding: 16px;
+   
+    width: 150px; 
+    height: 300px; 
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     
 }
 
-.card-footer{
-    font-size: 0.9em;
-    color: #666;
-    text-align: right;
+.card-body {
+    width: 100%; /* La imagen ocupa todo el ancho de la tarjeta */
+    height: 80%; /* La imagen ocupa el 80% de la altura de la tarjeta */
+    object-fit: cover; /* Ajusta la imagen para cubrir toda la tarjeta */
 }
+
+.card-footer {
+    font-size: 12px; 
+    text-align: center; 
+    height: 20%; /* La descripción ocupa el 20% de la altura de la tarjeta */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+    
 
 .paginacion{
     text-align: center;
