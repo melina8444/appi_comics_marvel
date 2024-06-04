@@ -1,0 +1,182 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    background-color: rgb(198, 247, 247);
+    width: 100vw;
+}
+
+.hero {
+    background-image: url('./assets/img/portada.png');
+    background-size:cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+    width: 100%; 
+    height: 55vh; 
+    display: flex;
+    
+    
+}
+
+
+.busqueda{ 
+    margin: 10px;
+    
+}
+
+.busqueda_container{
+    display: flex;
+
+    justify-content: space-between;
+    
+}
+
+.input_busqueda{
+    
+  border:0;
+  width: 100%;
+  padding: 5px 35px;
+  border-radius: 0;
+  font-size: 26px;
+}
+
+.busqueda_input{
+   /* border: 1px solid black;  */
+   width: 30%;
+}
+
+.busqueda_filtro{
+   display: flex;
+   margin-right: 120px;
+   gap: 30px;
+}
+
+.tipo{
+    font-weight: 300px;
+}
+
+.button_filtros{
+    background-color: aqua;
+    padding: 5px;
+    
+}
+
+.seccion_comics{
+    display: none;
+}
+
+#peliculas{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 8px 8px rgba(13, 217, 227, 0.1);
+    width: 300px;
+    margin: 20px;
+    padding: 16px;
+    
+}
+
+.card-footer{
+    font-size: 0.9em;
+    color: #666;
+    text-align: right;
+}
+
+.paginacion{
+    text-align: center;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.boton_paginacion{
+    background-color: crimson;
+    border-radius: 7px;
+    padding: 7px;
+}
+
+.footer{
+    text-align: center;
+    height: 20px;
+    background-color: #666;
+    color: #ccc;
+}
+
+/* mobile */
+@media only screen and (max-width:600px){
+    
+    .busqueda_filtro{
+        display: flex;
+        flex-direction: column;
+        
+        }
+
+    .filtros_chicos{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+    }
+
+    .button_filtros{
+        background-color: #666;
+        border-radius: 8px;
+        padding: 8px;
+    }
+}
+
+
+/* tablet */
+@media only screen and (min-width: 601px) and (max-width: 1022px) {
+    
+    .busqueda_filtro {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filtros_chicos {
+        display: flex;
+        flex-direction: column;
+        gap: 5px; /* Espacio entre los elementos */
+    }
+
+    .button_filtros {
+        background-color: #ec7575; /* Color de fondo del botón */
+        border-radius: 8px; /* Bordes redondeados */
+        padding: 8px; /* Espaciado interno del botón */
+    }
+}
+
+/* grande */
+@media only screen and (min-width: 1023px) {
+    
+    .busqueda_filtro {
+        display: flex;
+        flex-direction: row; /* Cambiar a diseño en fila para pantallas grandes */
+        justify-content: space-between; /* Distribuir espacio entre los elementos */
+    }
+
+    .filtros_chicos {
+        display: flex;
+        flex-direction: row; /* Cambiar a diseño en fila */
+        gap: 5px; /* Mayor espacio entre los elementos */
+    }
+
+    .button_filtros {
+        background-color: #57d3e8; /* Color de fondo del botón */
+        border-radius: 8px; /* Bordes redondeados */
+        padding: 8px; /* Espaciado interno del botón */
+    }
+}

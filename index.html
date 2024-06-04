@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Comics</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header class="header">
+        <h1>ADA COMICS</h1>
+    </header>
+    <!-- hero -->
+    <div class="hero"></div>
+
+
+    <!-- main -->
+    <main class="columna">
+    <!-- busqueda -->
+    <div class="busqueda">
+        <h2 class="titulo_busqueda">Búsqueda</h2>
+        <div class="busqueda_container">
+            <div class="busqueda_input">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" name="input_busqueda" id="input_busqueda" placeholder="Ingresa tu busqueda">
+            </div>
+            <div class="busqueda_filtro">
+                <div class="filtros_chicos">
+                    <label for="tipo">TIPO</label>
+                    <select name="tipo" id="tipo">
+                        <option value="comics">COMICS</option>
+                        <option value="caracteres">PERSONAJES</option>
+                    </select>
+                    <label for="orden">ORDEN</label>
+                    <select name="orden" id="orden">
+                        <option value="titulo">A-Z</option>
+                        <option value="alreves_titulo">Z-A</option>
+                        <option value="mas_nuevos">Más nuevos</option>
+                        <option value="mas_viejos">Más viejos</option>
+                    </select>
+
+
+                   
+                </div>
+                <button class="button_filtros" type="button">Buscar...</button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+
+ <!-- seccion de resultados  -->
+ <section class="resultado_seccion" style="background-color: rgb(42, 165, 87);">
+    <h2 class="resultado_titulo">Resultados</h2>
+    <p class="cuenta_resultados"></p>
+    <div class="resultados">
+        <div class="comic">
+            <div class="imagen_comic_container">
+                <img src="" alt="">
+                <h3 class="comic_titulo"></h3>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+
+
+         <!-- seccion comics  -->
+        <section class="seccion_comics hidden" >
+            <img src="" alt="" class="comics_imagen">
+            <div class="detalle_comics">
+                <h2 class="titulo_comics"></h2>
+                <h3>Publicado:</h3>
+                <p class="comics_publicado"></p>
+                <h3>Guionistas</h3>
+                <p class="comics_escritores"></p>
+                <h3>Descripción</h3>
+                <p class="comics_descripcion"></p>
+            </div>
+        </section>
+        <!-- seccion imagen  -->
+        <section id="peliculas"  >
+            <!-- <img src="" alt="" class="imagen_retrato">
+            <div class="personaje_detalle">
+                <h2 class="personaje_nombre"></h2>
+                <p class="personaje_descripcion"></p>
+            </div> -->
+        </section>
+       
+        <section class="paginacion">
+            <div class="paginacion">
+                <button type="button"><i class="fas fa-angle-double-left boton_paginacion" aria-hidden="true"></i></button>
+                <button type="button"><i class="fas fa-angle-left boton_paginacion" aria-hidden="true"></i></button>
+                <button type="button"><i class="fas fa-angle-right boton_paginacion" aria-hidden="true"></i></button>
+                <button type="button"><i class="fas fa-angle-double-right boton_paginacion" aria-hidden="true"></i></button>
+            </div>
+        </section>
+        <div class="cargador_cotainer hidden">
+            <div class="cargador">
+            </div>
+        </div>
+    </div>
+
+<!-- <ul id="peliculas"></ul> -->
+</main>
+
+<footer>
+    <div class="footer">Realizado por Melina 💕</div>
+</footer>
+
+<script src="https://kit.fontawesome.com/e6f12faa36.js" crossorigin="anonymous"></script>
+<script src="./assets/js/app.js"></script>
+</body>
+
+</html>
