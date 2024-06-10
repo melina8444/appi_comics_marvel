@@ -90,6 +90,7 @@ obtenerPeliculas();
 const buscarBoton = document.getElementById('buscar')
 const tipo = document.getElementById('tipo')
 const input_busqueda = document.getElementById('input_busqueda')
+const order = document.getElementById('order')
 
 // buscarBoton.addEventListener('click', (event)=>{
 //     event.preventDefault()
@@ -112,8 +113,16 @@ function realizarBusqueda() {
     const queryParam = tipo.value === 'comics' ? 'titleStartsWith' : 'nameStartsWith';
     const endpoint = tipo.value === 'comics' ? 'comics' : 'characters';
     const queryValue = input_busqueda.value.trim();
+
+    let orderBy = '';
+
+    if (order.value === 'az') orderBy = 'title';
+    else if (order.value === 'za') orderBy = '-title';
+    else if (order.value === 'new') orderBy = 'modified';
+    else if (order.value === 'old') orderBy = '-modified';
+
     if (queryValue) {
-        const url = `http://gateway.marvel.com/v1/public/${endpoint}?ts=${ts}&apikey=${publicKey}&hash=${hash}&${queryParam}=${queryValue}&limit=${limit}&offset=${offset}`;
+        const url = `http://gateway.marvel.com/v1/public/${endpoint}?ts=${ts}&apikey=${publicKey}&hash=${hash}&${queryParam}=${queryValue}&limit=${limit}&offset=${offset}&orderBy=${orderBy}`;
         obtenerPeliculas(url);
     } else {
         console.error('No hay busqueda 😒.');
