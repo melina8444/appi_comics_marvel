@@ -4,6 +4,18 @@ const btnAtras = document.getElementById('atras');
 const btnAlPrincipio = document.getElementById('al_principio');
 const btnAlFinal = document.getElementById('al_final');
 
+const cambiarTitulo = document.querySelector('.titulo_busqueda');
+
+
+const capturar=()=>{
+    cambiarTitulo.textContent = 'Nueva Busqueda';
+    
+}
+
+capturar();
+
+
+
 const publicKey = 'ef12e30fbb2d51edb822c1a316b7f30b';
 const ts = 1;
 const hash = 'f26390123ec9c2dd39fd71a48e2c1bb7';
@@ -95,13 +107,13 @@ const order = document.getElementById('order')
 // buscarBoton.addEventListener('click', (event)=>{
 //     event.preventDefault()
 //     console.log(tipo.value)
-//     // if (tipo.value === 'comics'){
-//     //     let url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${input_busqueda.value}`
-//     //     obtenerPeliculas(url);
-//     // }else if (tipo.value === 'characters'){
-//     //     let url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${input_busqueda.value}`
-//     //     obtenerPeliculas(url);
-//     // }
+//     if (tipo.value === 'comics'){
+//         let url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&titleStartsWith=${input_busqueda.value}`
+//         obtenerPeliculas(url);
+//     }else if (tipo.value === 'characters'){
+//         let url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&nameStartsWith=${input_busqueda.value}`
+//         obtenerPeliculas(url);
+//     }
 
 //     const queryParam = tipo.value === 'comics' ? 'titleStartsWith' : 'nameStartsWith';
 //         const url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&${queryParam}=${input_busqueda.value}`
