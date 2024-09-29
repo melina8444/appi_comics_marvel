@@ -11,7 +11,7 @@
 <body>
     <!-- header -->
     <header class="header">
-        <h1>ADA COMICS</h1>
+        <h1 class="header__titulo">ADA COMICS</h1>
     </header>
     <!-- hero -->
     <div class="hero"></div>
@@ -24,7 +24,7 @@
             <div class="busqueda_container">
                 <div class="busquedaDelInput">
                     <i id="icono_busqueda" class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" name="input_busqueda" id="input_busqueda" placeholder="Ingresa tu búsqueda">
+                    <input type="text" name="input_busqueda" id="input_busqueda" class="input_busqueda" placeholder="Ingresa tu búsqueda">
                 </div>
                 <div class="busqueda_filtro">
                     <div class="filtros_chicos">
@@ -36,21 +36,21 @@
                         <label for="order">ORDEN</label>
                         <select name="order" id="order">
                             <option value="az">A-Z</option>
-                            <option value="za">Z-A</option>
+                            <option value="za" selected>Z-A</option>
                             <option value="new">Más nuevos</option>
                             <option value="old">Más viejos</option>
                         </select>
                     </div>
-                    <button class="button_filtros" type="button" id="buscar">Buscar...</button>
+                    <button class="button_filtros" type="button" id="buscar">Buscar</button>
                 </div>
             </div>
         </div>
 
         <!-- sección de resultados -->
-        <section class="resultado_seccion" style="background-color: rgb(42, 165, 87);">
+        <section class="resultado_seccion">
             <h2 class="resultado_titulo">Resultados</h2>
             <p class="contador_resultado" id="contador_resultado">
-                <span id="numero_resultado" class="numero_resultado">0</span> RESULTADOS
+                <span id="numero_resultado" class="numero_resultado">0</span> 
             </p>
             <div class="resultados" id="resultados">
                 <!-- Los resultados se mostrarán aquí -->
@@ -58,9 +58,9 @@
         </section>
 
         <!-- sección comics -->
-        <section class="seccion_comics hidden">
-            <img src="" alt="" class="comics_imagen">
-            <div class="detalle_comics">
+        <section class="seccion_detalles hidden" id="seccion_detalles">
+            <!-- <img src="" alt="" class="comics_imagen">
+            <div class="detalle_comics" id="detalle_comics">
                 <h2 class="titulo_comics"></h2>
                 <h3>Publicado:</h3>
                 <p class="comics_publicado"></p>
@@ -68,20 +68,20 @@
                 <p class="comics_escritores"></p>
                 <h3>Descripción</h3>
                 <p class="comics_descripcion"></p>
-            </div>
+            </div> -->
         </section>
 
         <!-- sección imagen -->
-        <section id="peliculas">
+        <section id="card_personajes_comics" class="card_personajes_comics">
             <!-- Aquí se mostrarán las tarjetas generadas por JS -->
         </section>
         
         <!-- sección paginación -->
         <section class="paginacion">
-            <button type="button" id="al_principio"><i class="fas fa-angle-double-left boton_paginacion" aria-hidden="true"></i></button>
-            <button type="button" id="atras"><i class="fas fa-angle-left boton_paginacion" aria-hidden="true"></i></button>
-            <button type="button" id="adelante"><i class="fas fa-angle-right boton_paginacion" aria-hidden="true"></i></button>
-            <button type="button" id="al_final"><i class="fas fa-angle-double-right boton_paginacion" aria-hidden="true"></i></button>
+            <button type="button" id="al_principio" class="boton_paginacion"><i class="fas fa-angle-double-left icono_paginacion" aria-hidden="true"></i></button>
+            <button type="button" id="atras" class="boton_paginacion"><i class="fas fa-angle-left icono_paginacion" aria-hidden="true"></i></button>
+            <button type="button" id="adelante" class="boton_paginacion"><i class="fas fa-angle-right icono_paginacion" aria-hidden="true"></i></button>
+            <button type="button" id="al_final" class="boton_paginacion"><i class="fas fa-angle-double-right icono_paginacion" aria-hidden="true"></i></button>
         </section>
 
         <div class="cargador_cotainer hidden">
