@@ -7,10 +7,9 @@ const btnAlFinal = document.getElementById("al_final");
 const cambiarTitulo = document.querySelector(".titulo_busqueda");
 const contenedor_resultados = document.getElementById("resultados");
 const numeroResultado = document.getElementById("numero_resultado");
- 
 
 /* SECCION DETALLES */
-const seccionDetalles = document.getElementById("seccion_detalles"); 
+const seccionDetalles = document.getElementById("seccion_detalles");
 
 const publicKey = "ef12e30fbb2d51edb822c1a316b7f30b";
 const ts = 1;
@@ -25,23 +24,20 @@ function obtenerDatos(url) {
     .then((response) => response.json())
     .then((data) => {
       if (url.includes("comics")) {
-          mostrarComics(data.data.results); // Llamo a la funcion  mostrarComics
-          actualizarTotalResultados(data.data.total, "comics"); //actualizo el total de comics
+        mostrarComics(data.data.results); // Llamo a la funcion  mostrarComics
+        actualizarTotalResultados(data.data.total, "comics"); //actualizo el total de comics
       } else if (url.includes("characters")) {
-          mostrarPersonajes(data.data.results); // Llamar a la funcion mostrarPersonajes
-          actualizarTotalResultados(data.data.total, "characters"); //actualizo el total de personajes
+        mostrarPersonajes(data.data.results); // Llamar a la funcion mostrarPersonajes
+        actualizarTotalResultados(data.data.total, "characters"); //actualizo el total de personajes
       }
     })
     .catch((error) => console.error("Error:", error));
 }
 
-
 // Función para mostrar detalles de cómics
 function mostrarInfoComics(comics) {
-  
   seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregar el contenido
   comics.forEach((comic) => {
-   
     const divDetalle = document.createElement("div");
     divDetalle.className = "detalle_comics";
 
@@ -119,132 +115,123 @@ function mostrarInfoComics(comics) {
   });
 }
 
- // Función para mostrar cómics en la lista
+// Función para mostrar cómics en la lista
 function mostrarComics(comics) {
- 
   listasItems.innerHTML = ""; // Limpia el contenido anterior
-    comics.forEach((comic) => {
-      const imageUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
+  comics.forEach((comic) => {
+    const imageUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
 
-      if (imageUrl && !imageUrl.includes("image_not_available")) {
-        const nuevoComic = document.createElement("div");
-        nuevoComic.className = "card";
-        nuevoComic.style.border = "1px solid grey";
+    if (imageUrl && !imageUrl.includes("image_not_available")) {
+      const nuevoComic = document.createElement("div");
+      nuevoComic.className = "card";
+      nuevoComic.style.border = "1px solid grey";
 
-        const nuevaImagen = document.createElement("img");
-        nuevaImagen.className = "card-body";
+      const nuevaImagen = document.createElement("img");
+      nuevaImagen.className = "card-body";
 
-        nuevaImagen.src = imageUrl;
+      nuevaImagen.src = imageUrl;
 
-        const descripcion = document.createElement("p");
-        descripcion.className = "card-footer";
-        descripcion.textContent = comic.title;
-        descripcion.style.marginTop = "3px";
+      const descripcion = document.createElement("p");
+      descripcion.className = "card-footer";
+      descripcion.textContent = comic.title;
+      descripcion.style.marginTop = "3px";
 
-        nuevoComic.appendChild(nuevaImagen);
-        nuevoComic.appendChild(descripcion);
+      nuevoComic.appendChild(nuevaImagen);
+      nuevoComic.appendChild(descripcion);
 
-        listasItems.appendChild(nuevoComic);
+      listasItems.appendChild(nuevoComic);
 
-        nuevoComic.addEventListener("click", function () {
-          alert(comic.title);
+      nuevoComic.addEventListener("click", function () {
+        alert(comic.title);
 
-          listasItems.style.display = "none";
+        listasItems.style.display = "none";
 
-          mostrarInfoComics([comic]);
-        });
-      }
-    });
+        mostrarInfoComics([comic]);
+      });
+    }
+  });
 }
 
-
- // Función para mostrar personajes en la lista
+// Función para mostrar personajes en la lista
 function mostrarPersonajes(personajes) {
- 
   listasItems.innerHTML = ""; // Limpia el contenido anterior
-    personajes.forEach((personaje) => {
-      const imageUrl = personaje.thumbnail.path + "." + personaje.thumbnail.extension;
-      if (imageUrl && !imageUrl.includes("image_not_available")) {
-        const nuevoPersonaje = document.createElement("div");
-        nuevoPersonaje.className = "card";
-        nuevoPersonaje.style.border = "1px solid grey";
+  personajes.forEach((personaje) => {
+    const imageUrl =
+      personaje.thumbnail.path + "." + personaje.thumbnail.extension;
+    if (imageUrl && !imageUrl.includes("image_not_available")) {
+      const nuevoPersonaje = document.createElement("div");
+      nuevoPersonaje.className = "card";
+      nuevoPersonaje.style.border = "1px solid grey";
 
-        const nuevaImagen = document.createElement("img");
-        nuevaImagen.className = "card-body";
+      const nuevaImagen = document.createElement("img");
+      nuevaImagen.className = "card-body";
 
-        nuevaImagen.src = imageUrl;
+      nuevaImagen.src = imageUrl;
 
-        const descripcion = document.createElement("p");
-        descripcion.className = "card-footer";
-        descripcion.textContent = personaje.name;
-        descripcion.style.marginTop = "3px";
+      const descripcion = document.createElement("p");
+      descripcion.className = "card-footer";
+      descripcion.textContent = personaje.name;
+      descripcion.style.marginTop = "3px";
 
-        nuevoPersonaje.appendChild(nuevaImagen);
-        nuevoPersonaje.appendChild(descripcion);
+      nuevoPersonaje.appendChild(nuevaImagen);
+      nuevoPersonaje.appendChild(descripcion);
 
-        listasItems.appendChild(nuevoPersonaje);
+      listasItems.appendChild(nuevoPersonaje);
 
-        nuevoPersonaje.addEventListener("click", function () {
-          alert(personaje.name);
+      nuevoPersonaje.addEventListener("click", function () {
+        alert(personaje.name);
 
-          listasItems.style.display = "none";
+        listasItems.style.display = "none";
 
-          mostrarInfoPersonajes([personaje]);
-        });
-      }
-    });
-    
-
+        mostrarInfoPersonajes([personaje]);
+      });
+    }
+  });
 }
 
 function mostrarInfoPersonajes(personajes) {
+  seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregarle contenido
+  personajes.forEach((personaje) => {
+    const divDetalle = document.createElement("div");
+    divDetalle.className = "detalle_comics";
 
-    seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregarle contenido
-    personajes.forEach((personaje) => {
-      const divDetalle = document.createElement("div");
-      divDetalle.className = "detalle_comics";
+    const nuevaImagen = document.createElement("img");
+    nuevaImagen.className = "comics_imagen";
+    const imageUrl =
+      personaje.thumbnail.path + "." + personaje.thumbnail.extension;
+    nuevaImagen.src = imageUrl;
 
-      const nuevaImagen = document.createElement("img");
-      nuevaImagen.className = "comics_imagen";
-      const imageUrl = personaje.thumbnail.path + "." + personaje.thumbnail.extension;
-      nuevaImagen.src = imageUrl;
+    const titulo = document.createElement("h2");
+    titulo.className = "titulo_comics";
+    titulo.textContent = personaje.name;
 
-      const titulo = document.createElement("h2");
-      titulo.className = "titulo_comics";
-      titulo.textContent = personaje.name;
+    const descripcion = document.createElement("h3");
+    descripcion.className = "comics_titulo_descripcion";
+    descripcion.textContent = "Descripción: ";
 
-      
+    const parrafoDescripcion = document.createElement("p");
+    parrafoDescripcion.className = "comics_descripcion";
+    parrafoDescripcion.textContent = personaje.description
+      ? personaje.description
+      : "Descripción no disponible";
 
-      const descripcion = document.createElement("h3");
-      descripcion.className = "comics_titulo_descripcion";
-      descripcion.textContent = "Descripción: ";
+    // Añado los elementos al divDetalle
+    divDetalle.appendChild(nuevaImagen);
+    divDetalle.appendChild(titulo);
 
-      const parrafoDescripcion = document.createElement("p");
-      parrafoDescripcion.className = "comics_descripcion";
-      parrafoDescripcion.textContent = personaje.description
-        ? personaje.description
-        : "Descripción no disponible";
+    divDetalle.appendChild(descripcion);
+    descripcion.appendChild(parrafoDescripcion);
 
-      // Añado los elementos al divDetalle
-      divDetalle.appendChild(nuevaImagen);
-      divDetalle.appendChild(titulo);
-      
-      divDetalle.appendChild(descripcion);
-      descripcion.appendChild(parrafoDescripcion);
-
-      // Añado el divDetalle a la sección de detalles
-      seccionDetalles.appendChild(divDetalle);
-    });
-
+    // Añado el divDetalle a la sección de detalles
+    seccionDetalles.appendChild(divDetalle);
+  });
 }
 
 function limpiarResultados() {
-  
   contenedor_resultados.innerHTML = "";
 }
 
 function actualizarTotalResultados(total, tipo) {
- 
   if (tipo === "comics") {
     numeroResultado.textContent = `${total} cómics encontrados`;
   } else if (tipo === "characters") {
@@ -292,13 +279,13 @@ function ajustarOpcionesOrden() {
     const optionZa = new Option("Z-A", "za");
     const optionNew = new Option("Más nuevos", "new");
     const optionOld = new Option("Más viejos", "old");
-    
+
     order.add(optionAz);
     order.add(optionZa);
     order.add(optionNew);
     order.add(optionOld);
 
-  // Si es "characters", solo muestro las opciones A-Z y Z-A
+    // Si es "characters", solo muestro las opciones A-Z y Z-A
   } else if (tipo.value === "characters") {
     const optionAz = new Option("A-Z", "az");
     const optionZa = new Option("Z-A", "za");
@@ -361,8 +348,7 @@ buscarBoton.addEventListener("click", (event) => {
 
 // Llamo inicialmente para cargar los cómics al cargar la página
 function inicializar() {
-
-    order.value = "za";
+  order.value = "za";
 
   const url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
   obtenerDatos(url);
