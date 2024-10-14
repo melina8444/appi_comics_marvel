@@ -71,7 +71,8 @@ function mostrarComics(comics) {
       listasItems.appendChild(nuevoComic);
 
       nuevoComic.addEventListener("click", function () {
-        alert(comic.title);
+         console.log("Clic en el cómic:", comic.title);
+        
 
         listasItems.style.display = "none";
 
@@ -85,14 +86,16 @@ function mostrarComics(comics) {
 
 // Función para mostrar detalles de cómics
 function mostrarInfoComics(comics) {
+  console.log("Mostrando detalles de cómics:", comics);
+  seccionDetalles.style.display = "block"; // Asegúrate de mostrar la sección
   seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregar el contenido
 
   // Ocultar el menú de paginación
   const menuPaginacion = document.getElementById("menu_paginacion");
   menuPaginacion.style.display = "none";
 
-   const paginacion = document.getElementById("paginacion");
-   paginacion.style.display = "none";
+  const paginacion = document.getElementById("paginacion");
+  paginacion.style.display = "none";
 
   comics.forEach((comic) => {
     const divDetalle = document.createElement("div");
@@ -219,7 +222,9 @@ function mostrarPersonajes(personajes) {
       listasItems.appendChild(nuevoPersonaje);
 
       nuevoPersonaje.addEventListener("click", function () {
-        alert(personaje.name);
+
+        console.log("Clic en el personaje:", personaje.name);
+        
 
         listasItems.style.display = "none";
 
@@ -235,14 +240,16 @@ function mostrarPersonajes(personajes) {
 // Función para mostrar detalles de Personajes
 
 function mostrarInfoPersonajes(personajes) {
+  console.log("Mostrando detalles de personajes:", personajes);
+  seccionDetalles.style.display = "block"; // Asegúrate de mostrar la sección
   seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregarle contenido
 
   // Ocultar el menú de paginación
   const menuPaginacion = document.getElementById("menu_paginacion");
   menuPaginacion.style.display = "none";
 
-    const paginacion = document.getElementById("paginacion");
-    paginacion.style.display = "none";
+  const paginacion = document.getElementById("paginacion");
+  paginacion.style.display = "none";
 
   personajes.forEach((personaje) => {
     const divDetalle = document.createElement("div");
