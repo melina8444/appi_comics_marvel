@@ -1,8 +1,16 @@
+// Declaraciones de variables antes de usarlas
+
 const listasItems = document.getElementById("card_personajes_comics"); // cómics y personajes
 const btnAdelante = document.getElementById("adelante");
 const btnAtras = document.getElementById("atras");
 const btnAlPrincipio = document.getElementById("al_principio");
 const btnAlFinal = document.getElementById("al_final");
+
+const buscarBoton = document.getElementById("buscar");
+const tipo = document.getElementById("tipo");
+const input_busqueda = document.getElementById("input_busqueda");
+const order = document.getElementById("order");
+
 
 const cambiarTitulo = document.querySelector(".titulo_busqueda");
 const contenedor_resultados = document.getElementById("resultados");
@@ -23,20 +31,69 @@ function obtenerDatos(url) {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
+      totalResults = data.data.total; // Actualiza totalResults con el total de resultados obtenidos
       if (url.includes("comics")) {
-        mostrarComics(data.data.results); // Llamo a la funcion  mostrarComics
-        actualizarTotalResultados(data.data.total, "comics"); //actualizo el total de comics
+        mostrarComics(data.data.results);
+        actualizarTotalResultados(data.data.total, "comics");
       } else if (url.includes("characters")) {
-        mostrarPersonajes(data.data.results); // Llamar a la funcion mostrarPersonajes
-        actualizarTotalResultados(data.data.total, "characters"); //actualizo el total de personajes
+        mostrarPersonajes(data.data.results);
+        actualizarTotalResultados(data.data.total, "characters");
       }
     })
     .catch((error) => console.error("Error:", error));
 }
 
+
+// Función para mostrar cómics en la lista
+function mostrarComics(comics) {
+  listasItems.innerHTML = ""; // Limpia el contenido anterior
+  comics.forEach((comic) => {
+    const imageUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
+
+    if (imageUrl && !imageUrl.includes("image_not_available")) {
+      const nuevoComic = document.createElement("div");
+      nuevoComic.className = "card";
+      nuevoComic.style.border = "1px solid grey";
+
+      const nuevaImagen = document.createElement("img");
+      nuevaImagen.className = "card-body";
+
+      nuevaImagen.src = imageUrl;
+
+      const descripcion = document.createElement("p");
+      descripcion.className = "card-footer";
+      descripcion.textContent = comic.title;
+      descripcion.style.marginTop = "3px";
+
+      nuevoComic.appendChild(nuevaImagen);
+      nuevoComic.appendChild(descripcion);
+
+      listasItems.appendChild(nuevoComic);
+
+      nuevoComic.addEventListener("click", function () {
+        alert(comic.title);
+
+        listasItems.style.display = "none";
+
+        mostrarInfoComics([comic]);
+      });
+    }
+  });
+  // Actualizar el menú de paginación al final
+  actualizarMenuPaginacion();
+}
+
 // Función para mostrar detalles de cómics
 function mostrarInfoComics(comics) {
   seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregar el contenido
+
+  // Ocultar el menú de paginación
+  const menuPaginacion = document.getElementById("menu_paginacion");
+  menuPaginacion.style.display = "none";
+
+   const paginacion = document.getElementById("paginacion");
+   paginacion.style.display = "none";
+
   comics.forEach((comic) => {
     const divDetalle = document.createElement("div");
     divDetalle.className = "detalle_comics";
@@ -50,7 +107,7 @@ function mostrarInfoComics(comics) {
     titulo.className = "titulo_comics";
     titulo.textContent = comic.title;
 
-    // Encontrar la fecha de publicación (onsaleDate)
+    // Encuentra la fecha de publicación (onsaleDate)
     const onsaleDateObj = comic.dates.find(
       (dateObj) => dateObj.type === "onsaleDate"
     );
@@ -113,44 +170,27 @@ function mostrarInfoComics(comics) {
     // Añado el divDetalle a la sección de detalles
     seccionDetalles.appendChild(divDetalle);
   });
-}
 
-// Función para mostrar cómics en la lista
-function mostrarComics(comics) {
-  listasItems.innerHTML = ""; // Limpia el contenido anterior
-  comics.forEach((comic) => {
-    const imageUrl = comic.thumbnail.path + "." + comic.thumbnail.extension;
+  // Crear un botón para volver a la lista
+  const btnVolver = document.createElement("button");
+  btnVolver.className = "button_volver";
+  btnVolver.textContent = "Volver a la página principal";
+  btnVolver.addEventListener("click", function () {
+    listasItems.style.display = ""; // Mostrar nuevamente la lista
+    seccionDetalles.innerHTML = ""; // Limpiar detalles
+    actualizarMenuPaginacion(); // Mostrar el menú de paginación
 
-    if (imageUrl && !imageUrl.includes("image_not_available")) {
-      const nuevoComic = document.createElement("div");
-      nuevoComic.className = "card";
-      nuevoComic.style.border = "1px solid grey";
+    // Muestro el menú de paginación
+    const menuPaginacion = document.getElementById("menu_paginacion");
+    menuPaginacion.style.display = "flex";
 
-      const nuevaImagen = document.createElement("img");
-      nuevaImagen.className = "card-body";
-
-      nuevaImagen.src = imageUrl;
-
-      const descripcion = document.createElement("p");
-      descripcion.className = "card-footer";
-      descripcion.textContent = comic.title;
-      descripcion.style.marginTop = "3px";
-
-      nuevoComic.appendChild(nuevaImagen);
-      nuevoComic.appendChild(descripcion);
-
-      listasItems.appendChild(nuevoComic);
-
-      nuevoComic.addEventListener("click", function () {
-        alert(comic.title);
-
-        listasItems.style.display = "none";
-
-        mostrarInfoComics([comic]);
-      });
-    }
+    const paginacion = document.getElementById("paginacion");
+    paginacion.style.display = "block";
   });
+
+  seccionDetalles.appendChild(btnVolver); // Agregar el botón de volver
 }
+
 
 // Función para mostrar personajes en la lista
 function mostrarPersonajes(personajes) {
@@ -187,10 +227,23 @@ function mostrarPersonajes(personajes) {
       });
     }
   });
+
+  // Actualizar el menú de paginación al final
+  actualizarMenuPaginacion();
 }
+
+// Función para mostrar detalles de Personajes
 
 function mostrarInfoPersonajes(personajes) {
   seccionDetalles.innerHTML = ""; // Limpio la sección antes de agregarle contenido
+
+  // Ocultar el menú de paginación
+  const menuPaginacion = document.getElementById("menu_paginacion");
+  menuPaginacion.style.display = "none";
+
+    const paginacion = document.getElementById("paginacion");
+    paginacion.style.display = "none";
+
   personajes.forEach((personaje) => {
     const divDetalle = document.createElement("div");
     divDetalle.className = "detalle_comics";
@@ -225,11 +278,31 @@ function mostrarInfoPersonajes(personajes) {
     // Añado el divDetalle a la sección de detalles
     seccionDetalles.appendChild(divDetalle);
   });
+
+  // Crear un botón para volver a la lista
+  const btnVolver = document.createElement("button");
+  btnVolver.className = "button_volver";
+  btnVolver.textContent = "Volver a la página principal";
+  btnVolver.addEventListener("click", function () {
+    listasItems.style.display = ""; // Mostrar nuevamente la lista
+    seccionDetalles.innerHTML = ""; // Limpiar detalles
+    actualizarMenuPaginacion(); // Mostrar el menú de paginación
+    // Muestro el menú de paginación
+    const menuPaginacion = document.getElementById("menu_paginacion");
+    menuPaginacion.style.display = "flex";
+
+    const paginacion = document.getElementById("paginacion");
+    paginacion.style.display = "block";
+  });
+
+  seccionDetalles.appendChild(btnVolver); // Agregar el botón de volver
 }
 
 function limpiarResultados() {
   contenedor_resultados.innerHTML = "";
 }
+
+
 
 function actualizarTotalResultados(total, tipo) {
   if (tipo === "comics") {
@@ -239,9 +312,54 @@ function actualizarTotalResultados(total, tipo) {
   }
 }
 
-btnAdelante.addEventListener("click", function () {
-  offset += limit;
+function actualizarMenuPaginacion() {
+  const menuPaginacion = document.getElementById("menu_paginacion");
+  menuPaginacion.innerHTML = ""; // Limpiar el menú antes de agregar nuevo contenido
+
+  if (totalResults > 0) {
+    // Calcular la página actual y el total de páginas
+    const paginaActual = Math.floor(offset / limit) + 1;
+    const totalPaginas = Math.ceil(totalResults / limit);
+
+    // Crear el texto que muestra la página actual y el total
+    const infoPagina = document.createElement("p");
+    infoPagina.textContent = `Página ${paginaActual} de ${totalPaginas}`;
+    infoPagina.style.fontWeight = "bold";
+    infoPagina.style.margin = "0 10px"; // Estilo para que tenga espacio a los lados
+
+    // Añadir el texto al contenedor del menú
+    menuPaginacion.appendChild(infoPagina);
+
+    // Actualizar el estado de los botones
+    actualizarEstadoBotonesPaginacion(paginaActual, totalPaginas);
+  } else {
+    const infoPagina = document.createElement("p");
+    infoPagina.textContent = "No hay resultados";
+    menuPaginacion.appendChild(infoPagina);
+  }
+}
+
+function actualizarEstadoBotonesPaginacion(paginaActual, totalPaginas) {
+  // Habilitar o deshabilitar los botones según la página actual
+  btnAtras.disabled = paginaActual === 1;
+  btnAlPrincipio.disabled = paginaActual === 1;
+  btnAdelante.disabled = paginaActual === totalPaginas;
+  btnAlFinal.disabled = paginaActual === totalPaginas;
+}
+
+// Evento del botón de búsqueda
+buscarBoton.addEventListener("click", function () {
+  offset = 0; // Reiniciar el offset cuando se realiza una nueva búsqueda
   realizarBusqueda();
+});
+
+
+// Eventos de los botones
+btnAdelante.addEventListener("click", function () {
+  if (offset + limit < totalResults) {
+    offset += limit;
+    realizarBusqueda();
+  }
 });
 
 btnAtras.addEventListener("click", function () {
@@ -257,16 +375,12 @@ btnAlPrincipio.addEventListener("click", function () {
 });
 
 btnAlFinal.addEventListener("click", function () {
-  if (totalResults > limit) {
-    offset = Math.max(0, totalResults - limit);
+  if (totalResults > 0) {
+    offset = (Math.ceil(totalResults / limit) - 1) * limit;
     realizarBusqueda();
   }
 });
 
-const buscarBoton = document.getElementById("buscar");
-const tipo = document.getElementById("tipo");
-const input_busqueda = document.getElementById("input_busqueda");
-const order = document.getElementById("order");
 
 // Función que ajusta las opciones de orden según el tipo seleccionado
 function ajustarOpcionesOrden() {
@@ -340,11 +454,6 @@ function realizarBusqueda() {
   obtenerDatos(url);
 }
 
-buscarBoton.addEventListener("click", (event) => {
-  event.preventDefault();
-  offset = 0; // Reinicio para hacer una nueva búsqueda
-  realizarBusqueda();
-});
 
 // Llamo inicialmente para cargar los cómics al cargar la página
 function inicializar() {

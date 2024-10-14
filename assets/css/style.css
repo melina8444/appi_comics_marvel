@@ -245,9 +245,34 @@ select{
 }
 
 
+.button_volver {
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.button_volver:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+}
+
 
 
 /* PAGINACION */
+
+.menu_paginacion{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.menu_paginacion p {
+  font-size: 19px;
+  color: #333;
+  padding: 10px;
+}
 
 .paginacion{
     text-align: center;
@@ -263,7 +288,7 @@ select{
 }
 
 .icono_paginacion{
-    background-color: crimson;
+    background-color: rgb(73, 72, 72);
     border-radius: 7px;
     padding: 7px;
     cursor: pointer;
@@ -292,6 +317,7 @@ select{
     color: #ccc;
     font-size: 23px;
 }
+
 
 
 

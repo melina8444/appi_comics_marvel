@@ -61,16 +61,6 @@
 
         <!-- sección comics -->
         <section class="seccion_detalles hidden" id="seccion_detalles">
-            <!-- <img src="" alt="" class="comics_imagen">
-            <div class="detalle_comics" id="detalle_comics">
-                <h2 class="titulo_comics"></h2>
-                <h3>Publicado:</h3>
-                <p class="comics_publicado"></p>
-                <h3>Guionistas</h3>
-                <p class="comics_escritores"></p>
-                <h3>Descripción</h3>
-                <p class="comics_descripcion"></p>
-            </div> -->
         </section>
 
         <!-- sección imagen -->
@@ -78,8 +68,12 @@
             <!-- Aquí se mostrarán las tarjetas generadas por JS -->
         </section>
         
-        <!-- sección paginación -->
-        <section class="paginacion">
+        <!-- Muestra en que pagina me encuentro -->
+        <div id="menu_paginacion" class="menu_paginacion" ></div>
+
+
+        <!-- sección paginación - BOTONES -->
+        <section class="paginacion" id="paginacion">
             <button type="button" id="al_principio" class="boton_paginacion"><i class="fas fa-angle-double-left icono_paginacion" aria-hidden="true"></i></button>
             <button type="button" id="atras" class="boton_paginacion"><i class="fas fa-angle-left icono_paginacion" aria-hidden="true"></i></button>
             <button type="button" id="adelante" class="boton_paginacion"><i class="fas fa-angle-right icono_paginacion" aria-hidden="true"></i></button>
