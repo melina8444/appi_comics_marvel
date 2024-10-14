@@ -466,7 +466,7 @@ function realizarBusqueda() {
 function inicializar() {
   order.value = "za";
 
-  const url = `http://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
+  const url = `https://gateway.marvel.com/v1/public/comics?ts=${ts}&apikey=${publicKey}&hash=${hash}&limit=${limit}&offset=${offset}`;
   obtenerDatos(url);
 }
 
