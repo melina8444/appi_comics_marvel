@@ -36,15 +36,17 @@
 /* HERO IMAGEN */
 .hero {
     background-image: url('../img/hero.png');
-    background-color: rgba(0, 0, 0, 0.6);
+    
     background-size: cover;
-    /* background-position: center;  */
+    
     background-repeat: no-repeat;
     width: 100%; 
     min-height:500px; 
     display: flex;
     
 }
+
+
 
 /* MAIN */
 .columna{
@@ -296,6 +298,15 @@ select{
 .icono_paginacion:hover{
     background-color: #666;
 }
+
+
+
+.hidden {
+  display: none;
+}
+
+
+
 
 .footer{
     display: flex;
